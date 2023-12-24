@@ -1,0 +1,15 @@
+syntax="proto3";
+
+import "proto/first/application.proto";
+import "proto/second/application.proto";
+option go_package="github.com/rizkiramadhan201987/learn-grpc/protogen/go/bfi/jobsearchservice/jobsearch";
+
+message JobSearch {
+    uint32 job_candidate_id = 1 [json_name = "job_candidate_id"];
+    second.Application application = 2;
+}
+
+message JobSofware {
+    uint32 job_candidate_id = 1 [json_name = "job_candidate_id"];
+    first.Application application = 2;
+}

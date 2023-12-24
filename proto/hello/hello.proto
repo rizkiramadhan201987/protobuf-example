@@ -1,0 +1,9 @@
+syntax="proto3";
+
+
+// protoc --go_opt=module=github.com/rizkiramadhan201987/learn-grpc --go_out=./ ./proto/hello/*.proto
+option go_package="github.com/rizkiramadhan201987/learn-grpc/protogen/go/bfi/helloservice/hello;hello";
+
+message Hello {
+  string name = 1;
+}

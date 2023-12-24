@@ -1,0 +1,56 @@
+syntax="proto3";
+
+import "google/protobuf/any.proto";
+// protoc --go_opt=module=github.com/rizkiramadhan201987/learn-grpc --go_out=./ ./proto/user/*.proto
+option go_package="github.com/rizkiramadhan201987/learn-grpc/protogen/go/bfi/userservice/user";
+
+enum Gender {
+  // GENDER_UNSPECIFIED is default value
+  GENDER_UNSPECIFIED = 0;
+  GENDER_MALE=1;
+  GENDER_FEMALE=2;
+}
+message User {
+  uint32 id = 1; 
+  string username = 2;
+  bool is_active = 3 [
+        json_name="is_active"
+    ];
+  bytes password = 4;
+  Gender gender = 5;
+  repeated string emails = 6;
+  Address address = 7;
+  google.protobuf.Any communication_channel = 8
+  [json_name = "communication_channel"];
+  oneof electronic_comm_channel  {
+    SocialMedia social_media = 9 [json_name="social_media"];
+    InstantMessaging instant_messaging =10 [json_name="instant_messaging"];
+  };
+  map<string, uint32> skills = 11;
+  
+}
+
+message Address {
+  string street = 1;
+  string city = 2;
+  string country = 3;
+  Coordinate coordinate = 4;
+  message Coordinate {
+    double lat = 8;
+    double lng = 9;
+  }
+}
+
+message Paper_mail {
+  string paper_mail_address = 1 [json_name = "paper_mail_address"];
+}
+
+message SocialMedia {
+  string social_media_platform = 1 [json_name="social_media_platform"];
+  string social_media_username = 2 [json_name="social_media_username"];
+}
+message InstantMessaging {
+  string instant_messaging_product = 1 [json_name="instant_messaging_product"];
+  string instant_messaging_username = 2 [json_name="instant_messaging_username"];
+}
+

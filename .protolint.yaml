@@ -1,0 +1,6 @@
+lint:
+  rules:
+    no_default: true
+
+    add:
+      - MAX_LINE_LENGTH = 100
