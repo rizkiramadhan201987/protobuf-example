@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package product;
+
+option go_package = "github.com/rizkiramadhan201987/learn-grpc/protogen/go/bfi/productservice/product;product";
+
+message Product {
+    string product_name = 1 [
+        json_name = "product_name"
+    ];
+    double price = 2 [
+        json_name = "price"
+    ];
+}

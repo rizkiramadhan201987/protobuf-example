@@ -13,4 +13,5 @@ message UserGroup {
     repeated string roles = 22;
     repeated Address rs = 23;
     string description = 24;
+    repeated User users = 25;
 }

@@ -5,6 +5,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/rizkiramadhan201987/learn-grpc/protogen/go/bfi/productservice/product"
 	"github.com/rizkiramadhan201987/learn-grpc/service"
 )
 
@@ -28,7 +29,43 @@ func main() {
 	// service.ReadProto()
 	// service.BasicHello()
 	// service.SayHelloUser()
-	service.UserProtoToJson()
+	// service.UserProtoToJson()
+	productProto := product.Product{
+		ProductName: "Tepung Terigu",
+		Price:       10000,
+	}
+	productService := service.NewProductService(&productProto)
+
+	log.Println("Hasil inisialisasi : ", *productService)
+	log.Println("Hasil pembuatan product : ", productService.GetProduct())
+	productJSON, err := productService.ProductToJSON()
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Hasil Product proto -> JSON : ", string(productJSON))
+	var result *product.Product
+	result, err = productService.JsonToProduct(&productJSON)
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Hasil JSON -> Product proto : ", result)
+	if err = productService.WriteFileProduct(); err != nil {
+		panic(err)
+	}
+	if err = productService.WriteFileJson(); err != nil {
+		panic(err)
+	}
+	result, err = productService.ReadProductFile()
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Hasil Read Proto File : ", result)
+	result, err = productService.ReadFileJson()
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Hasil Read Proto JSON : ", result)
+	// productServic.
 	// service.UserJsonToProto()
 	// service.AddUserToUserGroup()
 	// service.JobSearch()

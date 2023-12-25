@@ -17,6 +17,7 @@ func AddUserToUserGroup() {
 	// create group
 	g1 := usergroup.UserGroup{
 		GroupId:     1,
+		GroupName:   "Hindia",
 		Description: "Finance Group",
 		Roles:       []string{"audit", "report", "account"},
 	}
